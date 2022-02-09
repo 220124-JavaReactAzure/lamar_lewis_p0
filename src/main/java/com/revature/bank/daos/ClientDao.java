@@ -7,6 +7,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 import com.revature.bank.models.Client;
 import com.revature.bank.utilities.ConnectionFactory;
@@ -15,6 +16,7 @@ import com.revature.bank.utilities.List;
 
 public class ClientDao implements CrudDAO<Client> {
 
+		Logger logger = Logger.getLogger("src/main/resources/logger.txt");
 	public Client findCredentials(String username, String password) {
 				
 		// trying to validate that the login credentials are valid
@@ -25,13 +27,16 @@ public class ClientDao implements CrudDAO<Client> {
 			ResultSet rs = s.executeQuery(sql);
 
 			ps.setString(1, username);
-			ps.setString(2, password);			
+			ps.setString(2, password);	
+			
+			logger.info("SUCCESSFULL CONNECTION");
 
 			//return rs.next();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
 			System.out.println("Invalid credentials");
+			logger.info("CONNECTION FAILED TO AUTHENTICATE");
 		}
 		return null;
 	}
