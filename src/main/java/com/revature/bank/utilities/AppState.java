@@ -3,8 +3,10 @@ package com.revature.bank.utilities;
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
 
+import com.revature.bank.menus.LoginMenu;
 import com.revature.bank.menus.RegisterMenu;
 import com.revature.bank.menus.WelcomeMenu;
+import com.revature.bank.services.ClientService;
 
 public class AppState {
 	
@@ -15,9 +17,10 @@ public class AppState {
 		isRunning = true;
 		router = new MenuRouter();
 		BufferedReader consoleReader = new BufferedReader(new InputStreamReader(System.in));
-		
+		ClientService clientservice = new ClientService();
 		router.addMenu(new WelcomeMenu(consoleReader,router));
-		router.addMenu(new RegisterMenu(consoleReader,router));
+		router.addMenu(new LoginMenu(consoleReader,router,clientservice));
+		router.addMenu(new RegisterMenu(consoleReader,router,clientservice));
 	}
 	
 	public void startup() {
