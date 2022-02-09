@@ -19,7 +19,7 @@ public class WelcomeMenu extends Menu {
 		System.out.println("Welcome to Bank of Lewis!\n" +"1) Login\n"+"2) Register\n"+"3) Exit\n");
 		
 		String userSelection = consoleReader.readLine();
-		
+		// use a switch case to cycle through user options
 		switch(userSelection) {
 		case "1":
 			router.transfer("/login");

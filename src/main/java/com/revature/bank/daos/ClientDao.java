@@ -27,10 +27,11 @@ public class ClientDao implements CrudDAO<Client> {
 			ps.setString(1, username);
 			ps.setString(2, password);			
 
-			return rs.next();
+			//return rs.next();
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
+			System.out.println("Invalid credentials");
 		}
 		return null;
 	}

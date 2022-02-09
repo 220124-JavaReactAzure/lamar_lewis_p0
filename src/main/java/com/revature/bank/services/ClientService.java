@@ -1,11 +1,15 @@
 package com.revature.bank.services;
 
+import java.util.logging.Logger;
+
 import com.revature.bank.DAOs.ClientDao;
 import com.revature.bank.models.Client;
+import com.revature.bank.util.assertNotNulll;
 import com.revature.bank.utilities.List;
 import com.revature.monster_lab.exceptions.InvalidRequestException;
 
 public class ClientService {
+	Logger logger = Logger.getLogger("src/main/resources/logger.txt");
 	
 	private ClientDao clientDao = new ClientDao(); 
 	
@@ -25,9 +29,14 @@ public class ClientService {
 		
 	}
 	
-	// implement sql authentication 
+	//this assists the Client Crud to do validation tasks
+	
+	// takes information from the client and validate them
+	
+	// try to authenticate credentials using prepared statements
 	public Client authenticateClient(String username, String password) {
 		clientDao.findCredentials(username, password);
+		logger.info("Authenticated");
 		return null;
 	}
 	
