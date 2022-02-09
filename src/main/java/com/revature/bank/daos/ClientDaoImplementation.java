@@ -1,4 +1,4 @@
-package com.revature.bank.daos;
+package com.revature.bank.DAOs;
 
 public class ClientDaoImplementation {
 

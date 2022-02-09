@@ -22,7 +22,7 @@ public class WelcomeMenu extends Menu {
 		
 		switch(userSelection) {
 		case "1":
-			router.transfer("/login");			
+			router.transfer("/login");
 			break;
 		case "2":
 			router.transfer("/register");

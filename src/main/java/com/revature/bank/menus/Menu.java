@@ -18,6 +18,7 @@ public abstract class Menu {
 		this.name = name;
 		this.route = route;
 		this.consoleReader = consoleReader;
+		this.router = router;
 	}
 
 

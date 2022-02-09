@@ -9,8 +9,7 @@ public class bankDriver {
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		
-		AppState app = new AppState();
-		
+		AppState app = new AppState();		
 		app.startup();
 
 

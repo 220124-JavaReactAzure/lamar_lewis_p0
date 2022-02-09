@@ -1,30 +1,33 @@
 package com.revature.bank.services;
 
-import java.io.File;
-import java.io.FileWriter;
-
+import com.revature.bank.DAOs.ClientDao;
 import com.revature.bank.models.Client;
+import com.revature.bank.utilities.List;
+import com.revature.monster_lab.exceptions.InvalidRequestException;
 
 public class ClientService {
 	
+	private ClientDao clientDao = new ClientDao(); 
+	
 	public boolean registerNewClient(Client newClient) {
 		if(!isClientValid(newClient)) {
-			throw new RuntimeException("Invalid User data provided");
+			throw new InvalidRequestException("Invalid User data provided");
 		}
+		clientDao.create(newClient);
 		
-		File clientFile = new File("resources/data.txt");
-		
-		try(FileWriter filewriter = new FileWriter(clientFile, true);){
-			filewriter.write(newClient.toFileString() + "\n");
-		}
-		catch (Exception e) {
-			e.printStackTrace();
-			return false;
-		}
 		return true;
 	}
 	
+	public List<Client> getAllClients(){
+		
+		return clientDao.findAll();
+		
+		
+	}
+	
+	// implement sql authentication 
 	public Client authenticateClient(String username, String password) {
+		clientDao.findCredentials(username, password);
 		return null;
 	}
 	
@@ -33,7 +36,7 @@ public class ClientService {
 		if(newClient.getfName()== null || newClient.getfName().trim().equals("")) return false;
 		if(newClient.getlName()== null || newClient.getlName().trim().equals("")) return false;
 		if(newClient.getEmail()== null || newClient.getEmail().trim().equals("")) return false;
-		if(newClient.getUserName()== null || newClient.getUserName().trim().equals("")) return false;
+		if(newClient.getuserName()== null || newClient.getuserName().trim().equals("")) return false;
 		return	newClient.getPassword() != null || !newClient.getPassword().trim().equals("");
 
 
