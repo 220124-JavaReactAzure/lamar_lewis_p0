@@ -10,7 +10,6 @@ public interface CrudDAO<T> {
 	T findById(String id);
 	
 	
-	boolean update(T updateObj);
 	
 	boolean delete (T deleteObj);
 

@@ -1,14 +1,17 @@
 package com.revature.bank.menus;
 
 import java.io.BufferedReader;
+import java.util.logging.Logger;
 
 import javax.naming.AuthenticationException;
 
+import com.revature.bank.models.Client;
 import com.revature.bank.services.ClientService;
 import com.revature.bank.utilities.MenuRouter;
 
 public class LoginMenu extends Menu {
 	
+	Logger logger = Logger.getLogger("src/main/resources/logger.txt");
 	
 	private final ClientService clientservice;
 
@@ -35,9 +38,12 @@ public class LoginMenu extends Menu {
 		
 		try {
 			clientservice.authenticateClient(username, password);
+			logger.info("User Authenticated");
+			//System.out.println(clientservice.));
 			router.transfer("/dashboard");
 		}
 		catch(AuthenticationException e) {
+			logger.info("AUTHENTICATION FAILED");
 		System.out.println("Invalid Credentials, try again");
 		router.transfer("/welcome");
 	}

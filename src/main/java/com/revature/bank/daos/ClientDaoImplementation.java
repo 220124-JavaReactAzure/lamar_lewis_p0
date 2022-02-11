@@ -23,7 +23,6 @@ public class ClientDaoImplementation implements CrudDAO<Accounts> {
 		return null;
 	}
 
-	@Override
 	public boolean update(Accounts updateObj) {
 		// TODO Auto-generated method stub
 		return false;
