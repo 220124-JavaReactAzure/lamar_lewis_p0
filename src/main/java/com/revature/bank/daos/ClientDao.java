@@ -113,7 +113,7 @@ public class ClientDao implements CrudDAO<Client> {
 		// TODO Auto-generated method stub
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
 
-			String sql = "select * from clients where client_id=?";
+			String sql = "select * from clients where user_id=?";
 			PreparedStatement ps = conn.prepareStatement(sql);
 
 			ps.setString(1, id);

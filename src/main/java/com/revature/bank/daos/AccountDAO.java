@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.UUID;
+import java.util.logging.Logger;
 
 import com.revature.bank.models.Accounts;
 import com.revature.bank.models.Accounts;
@@ -16,6 +17,9 @@ import com.revature.bank.utilities.LinkedList;
 import com.revature.bank.utilities.List;
 
 public class AccountDAO implements CrudDAO<Accounts> {
+	
+	static Logger logger = Logger.getLogger("src/main/resources/logger.txt");
+
 
 	public Accounts findCred(String account_no) {
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
@@ -94,15 +98,21 @@ public class AccountDAO implements CrudDAO<Accounts> {
 	}
 
 	@Override
-	public List<Accounts> findAll() {
+	public List<Accounts> findAll(){
+		return null;
+		
+	}
+	public List<Accounts> findAll(String id) {
 		// TODO Auto-generated method stub
 		List<Accounts> accountList = new LinkedList<>();
 
 		try (Connection conn = ConnectionFactory.getInstance().getConnection()) {
-			String sql = "select * from accounts";
-			Statement s = conn.createStatement();
+			String sql = "select * from accounts where client_id=?";
+			PreparedStatement ps = conn.prepareStatement(sql);
+			
+			ps.setString(1,id);
 
-			ResultSet resultSet = s.executeQuery(sql);
+			ResultSet resultSet = ps.executeQuery();
 
 			while (resultSet.next()) {
 				Accounts account = new Accounts();
@@ -161,6 +171,8 @@ public class AccountDAO implements CrudDAO<Accounts> {
 			ps.setDouble(1, currentAccount.getBalance());
 			ps.setString(2, currentAccount.getOwner_id());
 			ps.executeUpdate();
+			
+			logger.info("...persisted database");
 
 			return true;
 

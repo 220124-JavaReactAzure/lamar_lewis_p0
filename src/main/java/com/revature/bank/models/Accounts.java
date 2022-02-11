@@ -8,6 +8,7 @@ public class Accounts implements Serializable {
 	private double balance =0.0;
 	private String client_id;
 	private Client owner_id;
+	private String fname,lname;
 	
 	public Accounts() {
 		super();
@@ -26,6 +27,15 @@ public class Accounts implements Serializable {
 	public Accounts(String client_id,double balance) {
 		this.client_id = client_id;
 		this.balance = balance;
+	}
+	
+	public Accounts(String fname, String lname, String account_no,double balance,String client_id) {
+		super();
+		this.account_no = account_no;
+		this.balance = balance;
+		this.client_id = client_id;
+		this.fname = fname;
+		this.lname = lname;
 	}
 
 
@@ -70,6 +80,30 @@ public class Accounts implements Serializable {
 
 	public void setClient_id(String client_id) {
 		this.client_id = client_id;
+	}
+
+
+
+	public String getFname() {
+		return fname;
+	}
+
+
+
+	public void setFname(String fname) {
+		this.fname = fname;
+	}
+
+
+
+	public String getLname() {
+		return lname;
+	}
+
+
+
+	public void setLname(String lname) {
+		this.lname = lname;
 	}
 
 

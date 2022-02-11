@@ -4,7 +4,8 @@ public class AuthenticationException extends Exception {
 
 	public AuthenticationException(String string) {
 		// TODO Auto-generated constructor stub
-		System.out.println(string);
+		System.out.println("Invalid user");
+		
 	}
 
 }
