@@ -8,7 +8,6 @@ import com.revature.bank.models.Accounts;
 import com.revature.bank.models.Client;
 import com.revature.bank.services.AccountService;
 import com.revature.bank.services.ClientService;
-import com.revature.bank.utilities.List;
 import com.revature.bank.utilities.MenuRouter;
 import com.revature.monster_lab.exceptions.InvalidRequestException;
 
@@ -68,6 +67,7 @@ public class DashboardMenu extends Menu {
 				} catch (InvalidRequestException e) {
 
 				}
+				logger.info("....SUCCESSFULL DEPOSIT....");
 			}
 
 			router.transfer("/dashboard");
@@ -83,12 +83,15 @@ public class DashboardMenu extends Menu {
 					currentAccount.setBalance(currentAccount.getBalance() - withd);
 					AccountDAO.update(currentAccount);
 					logger.info("WITHDREW MONEY, $" + withd);
+					router.transfer("/dashboard");
 
 				} catch (InvalidRequestException e) {
-					logger.info("...OVERDRAFT NOT ALLOWED...\n ATTEMPTED TO TAKE: " + withd);
 
 				}
+				router.transfer("/dashboard");
+
 			}
+			logger.info("...OVERDRAFT NOT ALLOWED...");
 			router.transfer("/dashboard");
 			break;
 		case "4":
@@ -99,6 +102,7 @@ public class DashboardMenu extends Menu {
 			router.transfer("/dashboard");
 			break;
 		case "5":
+			logger.info("...RETURN TO MAIN MENU...\n");
 			break;
 		default:
 			System.out.println("Invalid selection try again");
